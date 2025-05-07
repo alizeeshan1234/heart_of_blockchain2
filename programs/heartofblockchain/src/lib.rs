@@ -38,4 +38,8 @@ pub mod heartofblockchain {
     pub fn withdraw(ctx: Context<Withdraw>) -> Result<()> {
         instructions::withdraw::withdraw(ctx)
     }
+
+    pub fn close_campaign(ctx: Context<CloseCampaign>, name: String) -> Result<()> {
+        instructions::close_campaign::close_campaign(ctx, name)
+    }
 } 

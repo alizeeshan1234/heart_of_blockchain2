@@ -9,3 +9,6 @@ pub use update_global_admin::*;
 pub use create_campaign::*;
 pub use donate::*;
 pub use withdraw::*; 
+
+pub mod close_campaign;
+pub use close_campaign::*;

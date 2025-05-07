@@ -1,14 +1,16 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { Heartofblockchain } from "../target/types/heartofblockchain";
-import { PublicKey, Keypair, LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { PublicKey, Keypair, LAMPORTS_PER_SOL, SystemProgram, MAX_SEED_LENGTH } from "@solana/web3.js";
 import { assert, expect } from "chai";
 import {
   createMint,
   mintTo,
   getAccount,
   createAssociatedTokenAccount,
+  TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
+import { ASSOCIATED_PROGRAM_ID } from "@coral-xyz/anchor/dist/cjs/utils/token";
 
 describe("heartofblockchain", () => {
   // Configure the client to use the local cluster.
@@ -450,4 +452,24 @@ describe("heartofblockchain", () => {
       }
     });
   });
+
+  it("Close campaign", async () => {
+    try {
+      const tx = await program.methods.closeCampaign(CAMPAIGN_NAME).accounts({
+        creator: serviceProviderKeypair.publicKey,
+        mint: mint,
+        campaign: campaignPda,
+        campaignTokenAccount: campaignTokenAccountPda,
+        creatorTokenAccount: serviceProviderAssociatedTokenAccount,
+        tokenProgram: TOKEN_PROGRAM_ID,
+        systemProgram: SystemProgram.programId,
+        associatedTokenProgram: ASSOCIATED_PROGRAM_ID,
+      }).signers([serviceProviderKeypair]).rpc();
+
+      console.log("Campaign account closed successfully");
+    } catch (e) {
+      console.log("Failed to close campaign account");
+      console.log(`Error : ${e}`);
+    }
+  })
 });

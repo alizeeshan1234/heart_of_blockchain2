@@ -38,4 +38,6 @@ pub enum CampaignError {
     InvalidTokenProgram,
     #[msg("Invalid associated token program.")]
     InvalidAssociatedTokenProgram,
+    #[msg("Invalid campaign name provided")]
+    InvalidCampaignName
 } 

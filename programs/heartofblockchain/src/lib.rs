@@ -42,4 +42,8 @@ pub mod heartofblockchain {
     pub fn close_campaign(ctx: Context<CloseCampaign>, name: String) -> Result<()> {
         instructions::close_campaign::close_campaign(ctx, name)
     }
+
+    pub fn get_campaign_donation_info(ctx: Context<GetTotalDonation>, name: String) -> Result<()> {
+        instructions::get_donation_info::get_total_donation(ctx, name)
+    }
 } 

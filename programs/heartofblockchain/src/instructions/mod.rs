@@ -12,3 +12,6 @@ pub use withdraw::*;
 
 pub mod close_campaign;
 pub use close_campaign::*;
+
+pub mod get_donation_info;
+pub use get_donation_info::*;

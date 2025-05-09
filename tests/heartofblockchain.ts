@@ -471,5 +471,19 @@ describe("heartofblockchain", () => {
       console.log("Failed to close campaign account");
       console.log(`Error : ${e}`);
     }
-  })
+  });
+  
+  it("Get total campaign donation", async () => {
+    try {
+      const tx = await program.methods.getCampaignDonationInfo(CAMPAIGN_NAME).accounts({
+        campaign: campaignPda,
+        creator: serviceProviderKeypair.publicKey,
+        systemProgram: SystemProgram.programId,
+      }).rpc();
+
+      console.log(`Transaction Signature: ${tx}`);
+    } catch (e) {
+      console.log(`Failed to get campaign donation: ${e}`)
+    }
+  });
 });

@@ -1,4 +1,4 @@
-# House of Blockchain
+# Heart of Blockchain
 
 A decentralized crowdfunding platform built on the Solana blockchain using the Anchor framework. This project allows users to create campaigns, donate to them, and campaign owners to withdraw funds once the target is reached.
 
